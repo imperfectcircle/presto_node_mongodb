@@ -7,7 +7,7 @@
     <main>
         <h1>Crea un nuovo utente</h1>
         <form action="/signup" method="post">
-            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            <%- include('../../shared/includes/csrf-token') %>
             <div>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>

@@ -4,7 +4,10 @@
         <ul>
             <% if (locals.isAuth) { %> 
                 <li>
-                    <button>Logout</button>
+                    <form action="/logout" method="post">
+                        <%- include('./csrf-token') %> 
+                        <button>Logout</button>
+                    </form>
                 </li>
             <% } %> 
         </ul>
