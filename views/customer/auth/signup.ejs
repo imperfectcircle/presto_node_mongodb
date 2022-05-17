@@ -7,38 +7,39 @@
     <main>
         <h1>Crea un nuovo utente</h1>
         <form action="/signup" method="post">
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
             <div>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" required>
             </div>
             <div>
                 <label for="confirm-email">Conferma email</label>
-                <input type="email" name="confirm-email" id="confirm-email">
+                <input type="email" name="confirm-email" id="confirm-email" required>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" minlength="8" required>
             </div>
             <div>
                 <label for="confirm-password">Verifica password</label>
-                <input type="password" name="confirm-password" id="confirm-password">
+                <input type="password" name="confirm-password" id="confirm-password" minlength="8" required>
             </div>
             <hr>
             <div>
                 <label for="fullname">Nome e cognome</label>
-                <input type="text" name="fullname" id="fullname">
+                <input type="text" name="fullname" id="fullname" required>
             </div>
             <div>
                 <label for="street">Indirizzo</label>
-                <input type="text" name="street" id="street">
+                <input type="text" name="street" id="street" required>
             </div>
             <div>
                 <label for="cap">CAP</label>
-                <input type="text" name="cap" id="cap">
+                <input type="text" name="cap" id="cap" minlength="5" maxlength="5" required>
             </div>
             <div>
                 <label for="city">Città</label>
-                <input type="text" name="city" id="city">
+                <input type="text" name="city" id="city" required>
             </div>
             <button class="btn">Registrati</button>
             <p id="switch-form"><a href="/login">Sei già registrato?</a></p>
