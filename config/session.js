@@ -6,8 +6,8 @@ const createSessionStore = () => {
     const MongoDBStore = mongodbStore(expressSession);
 
     const store = new MongoDBStore({
-        uri: 'mongodb://127.0.0.1:27017',
-        database: 'presto-shop',
+        uri: process.env.DB_HOST,
+        database: process.env.DB_DATABASE,
         collection: 'sessions',
     });
 
@@ -17,7 +17,7 @@ const createSessionStore = () => {
 // eslint-disable-next-line arrow-body-style
 const createSessionConfig = () => {
     return {
-        secret: '恋したい恋したい恋したい季節が来る。君の事見つけた渡り廊下。振り向く振り向く目が合うその瞬間僕はもう走り出している',
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: createSessionStore(),

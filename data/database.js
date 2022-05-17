@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const mongodb = require('mongodb');
 
 const { MongoClient } = mongodb;
@@ -5,8 +7,8 @@ const { MongoClient } = mongodb;
 let database;
 
 const connectToDatabase = async () => {
-    const client = await MongoClient.connect('mongodb://127.0.0.1:27017');
-    database = client.db('presto-shop');
+    const client = await MongoClient.connect(process.env.DB_HOST);
+    database = client.db(process.env.DB_DATABASE);
 };
 
 const getDb = () => {
