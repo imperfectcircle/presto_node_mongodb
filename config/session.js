@@ -7,7 +7,7 @@ const createSessionStore = () => {
 
     const store = new MongoDBStore({
         uri: process.env.DB_HOST,
-        database: process.env.DB_DATABASE,
+        databaseName: process.env.DB_DATABASE,
         collection: 'sessions',
     });
 

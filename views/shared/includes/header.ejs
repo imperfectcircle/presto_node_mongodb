@@ -1,4 +1,12 @@
 <header>
     <h2><i class="fa-solid fa-bullhorn"></i>Presto</h2>
-    <nav></nav>
+    <nav>
+        <ul>
+            <% if (locals.isAuth) { %> 
+                <li>
+                    <button>Logout</button>
+                </li>
+            <% } %> 
+        </ul>
+    </nav>
 </header>
