@@ -1,9 +1,9 @@
-<%- include('../includes/head', { pageTitle: 'Login'}) %> 
+<%- include('../../shared/includes/head', { pageTitle: 'Login'}) %> 
 <link rel="stylesheet" href="/styles/form.css">
 <link rel="stylesheet" href="/styles/auth.css">
 </head>
 <body>
-    <%-  include('../includes/header') %> 
+    <%-  include('../../shared/includes/header') %> 
     <main>
         <h1>Accedi</h1>
         <form action="/login" method="post">
@@ -20,4 +20,4 @@
             <p id="switch-form"><a href="/signup">Non hai un account? Registrati</a></p>
         </form>
     </main>
-    <%- include('../includes/footer') %> 
+    <%- include('../../shared/includes/footer') %> 
