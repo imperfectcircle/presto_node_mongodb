@@ -45,6 +45,8 @@ const login = async (req, res) => {
     authUtil.createUserSession(req, existingUser, () => {
         res.redirect('/');
     });
+
+    return true;
 };
 
 const logout = (req, res) => {

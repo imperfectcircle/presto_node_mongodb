@@ -1,7 +1,8 @@
+require('dotenv').config();
+
 const path = require('path');
 const express = require('express');
 const csrf = require('csurf');
-
 const expressSession = require('express-session');
 
 const authRoutes = require('./routes/auth.routes');
@@ -21,9 +22,10 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+const sessionConfig = createSessionConfig();
+
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
-const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 app.use(csrf());
 app.use(addCsrfMiddlewareToken);
