@@ -6,40 +6,43 @@
     <%-  include('../../shared/includes/header') %> 
     <main>
         <h1>Crea un nuovo utente</h1>
+        <% if (inputData.errorMessage) { %> 
+            <%- include('../../shared/includes/error-flash-box', { errorTitle: 'Informazioni non valide', errorMessage: inputData.errorMessage }) %> 
+        <% } %> 
         <form action="/signup" method="post">
             <%- include('../../shared/includes/csrf-token') %>
             <div>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
             </div>
             <div>
                 <label for="confirm-email">Conferma email</label>
-                <input type="email" name="confirm-email" id="confirm-email" required>
+                <input type="email" name="confirm-email" id="confirm-email" value="<%= inputData.confirmEmail %>" required>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" minlength="8" required>
+                <input type="password" name="password" id="password" minlength="8" value="<%= inputData.password %>" required>
             </div>
             <div>
                 <label for="confirm-password">Verifica password</label>
-                <input type="password" name="confirm-password" id="confirm-password" minlength="8" required>
+                <input type="password" name="confirm-password" id="confirm-password" minlength="8" value="<%= inputData.confirmPassword %>" required>
             </div>
             <hr>
             <div>
                 <label for="fullname">Nome e cognome</label>
-                <input type="text" name="fullname" id="fullname" required>
+                <input type="text" name="fullname" id="fullname" value="<%= inputData.fullname %>" required>
             </div>
             <div>
                 <label for="street">Indirizzo</label>
-                <input type="text" name="street" id="street" required>
+                <input type="text" name="street" id="street" value="<%= inputData.street %>" required>
             </div>
             <div>
                 <label for="cap">CAP</label>
-                <input type="text" name="cap" id="cap" minlength="5" maxlength="5" required>
+                <input type="text" name="cap" id="cap" minlength="5" maxlength="5" value="<%= inputData.cap %>" required>
             </div>
             <div>
                 <label for="city">Città</label>
-                <input type="text" name="city" id="city" required>
+                <input type="text" name="city" id="city" value="<%= inputData.city %>" required>
             </div>
             <button class="btn">Registrati</button>
             <p id="switch-form"><a href="/login">Sei già registrato?</a></p>

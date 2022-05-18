@@ -6,15 +6,20 @@
     <%-  include('../../shared/includes/header') %> 
     <main>
         <h1>Accedi</h1>
+        <% if (inputData.errorMessage) { %> 
+            <section class="alert">
+                <%- include('../../shared/includes/error-flash-box', { errorTitle: 'Credenziali errate', errorMessage: inputData.errorMessage }) %>
+            </section>
+        <% } %> 
         <form action="/login" method="post">
             <%- include('../../shared/includes/csrf-token') %>
             <div>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" minlength="8" required>
+                <input type="password" name="password" id="password" value="<%= inputData.password %>" required>
             </div>
             <button class="btn">Accedi</button>
             <p id="switch-form"><a href="/signup">Non hai un account? Registrati</a></p>

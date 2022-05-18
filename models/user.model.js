@@ -22,7 +22,8 @@ class User {
 
     async existAlready() {
         const existingUser = await this.getUserWithSameEmail();
-        return existingUser !== false;
+        return !!existingUser;
+        /* !! Cast the value to a boolean; if exist it's true otherwise it's false */
     }
 
     async signup() {

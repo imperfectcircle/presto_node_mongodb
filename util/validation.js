@@ -12,7 +12,7 @@ const userCredentialsAreValid = (
     && /[a-z]/.test(password)
     && /[A-Z]/.test(password)
     && /\d/.test(password)
-    && /\s/.test(password);
+    && !/\s/.test(password);
 
 const userDetailsAreValid = (
     email,
