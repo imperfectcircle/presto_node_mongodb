@@ -20,6 +20,11 @@ class User {
             .findOne({ email: this.email });
     }
 
+    async existAlready() {
+        const existingUser = await this.getUserWithSameEmail();
+        return existingUser !== false;
+    }
+
     async signup() {
         const hashedPassword = await bcrypt.hash(this.password, 12);
 

@@ -1,4 +1,5 @@
 const mongodb = require('mongodb');
+const logger = require('../logger/logger');
 
 const { MongoClient } = mongodb;
 
@@ -11,7 +12,7 @@ const connectToDatabase = async () => {
 
 const getDb = () => {
     if (!database) {
-        throw new Error('Devi prima collegarti al database');
+        logger.error(new Error('Devi prima collegarti al database'));
     }
 
     return database;
