@@ -1,4 +1,8 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
+
+const projectEnv = dotenv.config();
+dotenvExpand.expand(projectEnv);
 
 const path = require('path');
 const express = require('express');
@@ -10,6 +14,8 @@ const baseRoutes = require('./routes/base.routes');
 const productsRoutes = require('./routes/products.routes');
 
 const createSessionConfig = require('./config/session');
+
+const logger = require('./logger/logger');
 
 const db = require('./data/database');
 
@@ -37,9 +43,8 @@ app.use(errorHandlerMiddleware);
 
 db.connectToDatabase()
     .then(() => {
-        app.listen(3000);
+        app.listen(process.env.APP_PORT);
     })
     .catch((error) => {
-        console.log('Errore nella connessione al database');
-        console.log(error);
+        logger.error(error);
     });
