@@ -1,16 +1,18 @@
-<header>
-    <h2><i class="fa-solid fa-bullhorn"></i>Presto</h2>
+<header id="main-header">
+    <div id="logo">
+        <a href="/"><i class="fa-solid fa-bullhorn"></i>Presto</a>
+    </div>
     <nav>
-        <ul>
-            <li><a href="/"></a></li>
-            <% if (locals.isAuth) { %> 
-                <li>
-                    <form action="/logout" method="post">
-                        <%- include('./csrf-token') %> 
-                        <button class="btn">Logout</button>
-                    </form>
-                </li>
-            <% } %> 
-        </ul>
+        <%- include('nav-items') %> 
     </nav>
+    <button id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </header>
+<aside id="mobile-menu">
+    <nav>
+        <%- include('nav-items') %>
+    </nav>
+</aside>

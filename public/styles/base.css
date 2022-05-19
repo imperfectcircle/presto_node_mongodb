@@ -36,6 +36,8 @@
     --space-4: 1rem;    /* 16px */
     --space-6: 1.5rem;  /* 24px */
     --space-8: 2rem;    /* 32px */
+    --space-10: 2.5rem; /* 40px */
+    --space-12: 3rem;   /* 48px */
 
     --border-radius-small: 4px;
     --border-radius-medium: 6px;
@@ -53,6 +55,7 @@ body {
     background-color: var(--color-gray-50);
     color: var(--color-gray-600);
     margin: 0;
+    padding: 0;
 }
 
 main {
@@ -80,12 +83,27 @@ ol {
     color: var(--color-white);
     border: 1px solid var(--color-accent-500);
     border-radius: var(--border-radius-small);
-    transition: background-color 0.4s;
+    transition: background-color 0.4s ease-in-out;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-accent-700);
+    font-weight: 700;
+    border: 2px solid var(--color-accent-500);
+    transition: color 0.4s ease-in-out;
 }
 
 .btn:hover,
-.btn:active {
+.btn:active,
+.btn-outline:hover,
+.btn-outline:active {
     background-color: var(--color-accent-700);
+}
+
+.btn-outline:hover,
+.btn-outline:active {
+    color: var(--color-white);
 }
 
 .alert {

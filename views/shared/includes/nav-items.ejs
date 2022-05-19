@@ -1,0 +1,43 @@
+<ul class="nav-items">
+    <% if (!locals.isAdmin) { %>
+        <li>
+            <a href="/products">Shop</a>
+        </li>
+        <li>
+            <a href="/cart">Carrello</a>
+        </li>
+    <% } %>
+    
+    <% if (locals.isAuth && !locals.isAdmin) { %>
+        <li>
+            <a href="/orders">Ordini</a>
+        </li>
+    <% } %>
+
+    <% if (locals.isAdmin) { %>
+        <li>
+            <a href="/admin/products">Gestisci i prodotti</a>
+        </li>
+        <li>
+            <a href="/admin/orders">Gestisci gli ordini</a>
+        </li>
+    <% } %>
+
+    <% if (!locals.isAuth) { %>
+    <li>
+        <a class="btn btn-outline" href="/signup">Registrati</a>
+    </li>
+    <li>
+        <a class="btn" href="/login">Accedi</a>
+    </li>
+    <% } %>
+    
+    <% if (locals.isAuth) { %> 
+        <li>
+            <form action="/logout" method="post">
+                <%- include('./csrf-token') %> 
+                <button class="btn">Esci</button>
+            </form>
+        </li>
+    <% } %> 
+</ul>
