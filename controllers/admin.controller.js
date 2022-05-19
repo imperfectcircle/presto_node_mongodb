@@ -7,7 +7,10 @@ const getNewProuct = (req, res) => {
 };
 
 const createNewProduct = (req, res) => {
+    console.log(req.body);
+    console.log(req.file);
 
+    res.redirect('/admin/products');
 };
 
 module.exports = {
