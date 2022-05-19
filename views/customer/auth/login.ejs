@@ -11,7 +11,7 @@
                 <%- include('../../shared/includes/error-flash-box', { errorTitle: 'Credenziali errate', errorMessage: inputData.errorMessage }) %>
             </section>
         <% } %> 
-        <form action="/login" method="post">
+        <form class="form" action="/login" method="post">
             <%- include('../../shared/includes/csrf-token') %>
             <div>
                 <label for="email">Email</label>

@@ -59,8 +59,9 @@ body {
 }
 
 main {
-    width: 95%;
+    width: 90vw;
     margin: 0 auto;
+    
 }
 
 a {
@@ -91,7 +92,7 @@ ol {
     color: var(--color-accent-700);
     font-weight: 700;
     border: 2px solid var(--color-accent-500);
-    transition: color 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out, background-color 0.4s ease-in-out;
 }
 
 .btn:hover,

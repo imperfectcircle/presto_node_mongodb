@@ -9,7 +9,7 @@
         <% if (inputData.errorMessage) { %> 
             <%- include('../../shared/includes/error-flash-box', { errorTitle: 'Informazioni non valide', errorMessage: inputData.errorMessage }) %> 
         <% } %> 
-        <form action="/signup" method="post">
+        <form class="form" action="/signup" method="post">
             <%- include('../../shared/includes/csrf-token') %>
             <div>
                 <label for="email">Email</label>

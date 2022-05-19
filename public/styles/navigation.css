@@ -136,8 +136,8 @@ main{
     }
 
     #main-header {
-        width: 95%;
-        left: calc(5% - 2.5%);
+        width: 91vw;
+        left: calc(9vw - 4.5vw);
         margin-top: var(--space-4);
         border-radius: var(--border-radius-medium);
     }
@@ -157,32 +157,4 @@ main{
     .nav-items {
         flex-direction: row;
     }
-
-    /* .nav-items a {
-        padding: var(--space-2) var(--space-4);
-        border-radius: var(--border-radius-medium);
-        transition: background-color 0.4s ease-in-out;
-    }
-
-    .nav-items a:hover,
-    .nav-items a:active {
-        background-color: var(--color-primary-300);
-    }
-
-    .nav-items a.btn:hover,
-    .nav-items a.btn:active  {
-        background-color: var(--color-accent-700);
-    }
-
-    .nav-items a.btn-outline {
-        background-color: transparent;
-        color: var(--color-accent-700);
-        transition: color 0.4s ease-in-out;
-    }
-    
-    .nav-items a.btn-outline:hover,
-    .nav-items a.btn-outline:active {
-        background-color: var(--color-accent-700);
-        color: var(--color-white);
-    } */
 }
