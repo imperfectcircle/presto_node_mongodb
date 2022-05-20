@@ -24,7 +24,7 @@ import createSessionConfig from './config/session.js';
 
 import logger from './logger/logger.js';
 
-import db from './data/database.js';
+import { connectToDatabase } from './data/database.js';
 
 import addCsrfMiddlewareToken from './middlewares/csrf.token.js';
 import errorHandlerMiddleware from './middlewares/error-handler.js';
@@ -54,7 +54,7 @@ app.use(productsRoutes);
 app.use('/admin', adminRoutes);
 app.use(errorHandlerMiddleware);
 
-db.connectToDatabase()
+connectToDatabase()
     .then(() => {
         app.listen(process.env.APP_PORT);
     })

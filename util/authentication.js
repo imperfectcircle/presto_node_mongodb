@@ -9,7 +9,7 @@ const destroyUserAuthSession = (req) => {
     req.session.uid = null;
 };
 
-export default {
+export {
     createUserSession,
     destroyUserAuthSession,
 };

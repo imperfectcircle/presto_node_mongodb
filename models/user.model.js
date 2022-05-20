@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import bcrypt from 'bcryptjs';
 
-import db from '../data/database.js';
+import { getDb } from '../data/database.js';
 
 class User {
     constructor(email, password, fullname, street, cap, city) {
@@ -16,7 +16,7 @@ class User {
     }
 
     getUserWithSameEmail() {
-        return db.getDb()
+        return getDb()
             .collection('users')
             .findOne({ email: this.email });
     }
@@ -30,7 +30,7 @@ class User {
     async signup() {
         const hashedPassword = await bcrypt.hash(this.password, 12);
 
-        await db.getDb()
+        await getDb()
             .collection('users')
             .insertOne({
                 email: this.email,

@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import User from '../models/user.model.js';
 
-import authUtil from '../util/authentication.js';
+import { createUserSession, destroyUserAuthSession } from '../util/authentication.js';
 import { userDetailsAreValid, emailIsConfirmed, passwordIsConfirmed } from '../util/validation.js';
 import { getSessionData, flashDataToSession } from '../util/session-flash.js';
 
@@ -147,13 +147,13 @@ const login = async (req, res, next) => {
         return;
     }
 
-    authUtil.createUserSession(req, existingUser, () => {
+    createUserSession(req, existingUser, () => {
         res.redirect('/');
     });
 };
 
 const logout = (req, res) => {
-    authUtil.destroyUserAuthSession(req);
+    destroyUserAuthSession(req);
     res.redirect('/');
 };
 

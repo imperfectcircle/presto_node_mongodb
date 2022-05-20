@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import db from '../data/database.js';
+import { getDb } from '../data/database.js';
 import logger from '../logger/logger.js';
 
 class Product {
@@ -22,7 +22,7 @@ class Product {
             image: this.image,
         };
         try {
-            await db.getDb()
+            await getDb()
                 .collection('products')
                 .insertOne({ productData });
         } catch (error) {

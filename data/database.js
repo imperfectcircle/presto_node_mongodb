@@ -19,7 +19,7 @@ const getDb = () => {
     return database;
 };
 
-export default {
+export {
     connectToDatabase,
     getDb,
 };
