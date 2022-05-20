@@ -1,10 +1,10 @@
-<article class="product-item">
+<article id="product-item" class="product-item">
     <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
     <div class="product-item-content">
         <h2><%= product.title %></h2>
     <div class="product-item-action">
-        <a class="btn btn-outline" href="/admin/products/<%= product.id %> ">Aggiorna</a>
-        <button class="btn btn-warning">Elinina</button>
+        <a class="btn btn-outline" href="/admin/products/<%= product.id %>">Aggiorna</a>
+        <button class="btn btn-warning" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">Elimina</button>
     </div>
     </div>
 </article>

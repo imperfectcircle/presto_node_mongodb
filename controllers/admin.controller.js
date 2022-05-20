@@ -76,7 +76,7 @@ const deleteProduct = async (req, res, next) => {
         return;
     }
 
-    res.redirect('/admin/products');
+    res.json({ message: 'Deleted product' });
 };
 
 export {
