@@ -1,5 +1,6 @@
-import logger from '../logger/logger';
-import Product from '../models/poduct.model';
+/* eslint-disable import/extensions */
+import logger from '../logger/logger.js';
+import Product from '../models/poduct.model.js';
 
 const getProucts = (req, res) => {
     res.render('admin/products/all-products');
@@ -26,7 +27,7 @@ const createNewProduct = async (req, res, next) => {
     res.redirect('/admin/products');
 };
 
-export default {
+export {
     getProucts,
     getNewProuct,
     createNewProduct,

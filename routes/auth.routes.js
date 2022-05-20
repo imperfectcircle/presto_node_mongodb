@@ -1,12 +1,13 @@
-const express = require('express');
+/* eslint-disable import/extensions */
+import express from 'express';
 
-const {
+import {
     getSignup,
     signup,
     getLogin,
     login,
     logout,
-} = require('../controllers/auth.controller');
+} from '../controllers/auth.controller.js';
 
 const router = express.Router();
 
@@ -20,4 +21,4 @@ router.post('/login', login);
 
 router.post('/logout', logout);
 
-module.exports = router;
+export default router;

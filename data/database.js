@@ -1,5 +1,6 @@
-const mongodb = require('mongodb');
-const logger = require('../logger/logger');
+/* eslint-disable import/extensions */
+import mongodb from 'mongodb';
+import logger from '../logger/logger.js';
 
 const { MongoClient } = mongodb;
 
@@ -18,7 +19,7 @@ const getDb = () => {
     return database;
 };
 
-module.exports = {
+export default {
     connectToDatabase,
     getDb,
 };

@@ -1,8 +1,10 @@
-const User = require('../models/user.model');
+/* eslint-disable quotes */
+/* eslint-disable import/extensions */
+import User from '../models/user.model.js';
 
-const authUtil = require('../util/authentication');
-const { userDetailsAreValid, emailIsConfirmed, passwordIsConfirmed } = require('../util/validation');
-const { getSessionData, flashDataToSession } = require('../util/session-flash');
+import authUtil from '../util/authentication.js';
+import { userDetailsAreValid, emailIsConfirmed, passwordIsConfirmed } from '../util/validation.js';
+import { getSessionData, flashDataToSession } from '../util/session-flash.js';
 
 const getSignup = (req, res) => {
     let sessionData = getSessionData(req);
@@ -155,7 +157,7 @@ const logout = (req, res) => {
     res.redirect('/');
 };
 
-module.exports = {
+export {
     getSignup,
     getLogin,
     signup,

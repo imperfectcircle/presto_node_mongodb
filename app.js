@@ -1,31 +1,42 @@
-const dotenv = require('dotenv');
-const dotenvExpand = require('dotenv-expand');
+/* eslint-disable import/extensions */
+
+// ! To use import add "type": "module" to package.json and use
+// ! "nodemon --experimental-modules --es-module-specifier-resolution=node app.js"
+// ! you need to add .js when iporting your own modules and change module.exports = to
+// ! export default 
+
+import dotenv from 'dotenv';
+
+import dotenvExpand from 'dotenv-expand';
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import csrf from 'csurf';
+import expressSession from 'express-session';
+
+import authRoutes from './routes/auth.routes.js';
+import baseRoutes from './routes/base.routes.js';
+import productsRoutes from './routes/products.routes.js';
+import adminRoutes from './routes/admin.routes.js';
+
+import createSessionConfig from './config/session.js';
+
+import logger from './logger/logger.js';
+
+import db from './data/database.js';
+
+import addCsrfMiddlewareToken from './middlewares/csrf.token.js';
+import errorHandlerMiddleware from './middlewares/error-handler.js';
+import checkAuthStatusMiddleware from './middlewares/check-auth.js';
 
 const projectEnv = dotenv.config();
 dotenvExpand.expand(projectEnv);
 
-const path = require('path');
-const express = require('express');
-const csrf = require('csurf');
-const expressSession = require('express-session');
-
-const authRoutes = require('./routes/auth.routes');
-const baseRoutes = require('./routes/base.routes');
-const productsRoutes = require('./routes/products.routes');
-const adminRoutes = require('./routes/admin.routes');
-
-const createSessionConfig = require('./config/session');
-
-const logger = require('./logger/logger');
-
-const db = require('./data/database');
-
-const addCsrfMiddlewareToken = require('./middlewares/csrf.token');
-const errorHandlerMiddleware = require('./middlewares/error-handler');
-const checkAuthStatusMiddleware = require('./middlewares/check-auth');
-
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

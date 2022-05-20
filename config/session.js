@@ -1,6 +1,6 @@
-const expressSession = require('express-session');
+import expressSession from 'express-session';
 
-const mongodbStore = require('connect-mongodb-session');
+import mongodbStore from 'connect-mongodb-session';
 
 const createSessionStore = () => {
     const MongoDBStore = mongodbStore(expressSession);
@@ -27,4 +27,4 @@ const createSessionConfig = () => {
     };
 };
 
-module.exports = createSessionConfig;
+export default createSessionConfig;

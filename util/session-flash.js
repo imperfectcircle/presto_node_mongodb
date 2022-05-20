@@ -11,7 +11,7 @@ const flashDataToSession = (req, data, action) => {
     req.session.save(action);
 };
 
-module.exports = {
+export {
     getSessionData,
     flashDataToSession,
 };

@@ -1,5 +1,5 @@
-const multer = require('multer');
-const uuid = require('uuid').v4;
+import multer from 'multer';
+import { v4 as uuid } from 'uuid';
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -14,4 +14,4 @@ const upload = multer({
 
 const configuredMulterMiddleware = upload.single('image');
 
-module.exports = configuredMulterMiddleware;
+export default configuredMulterMiddleware;

@@ -1,6 +1,12 @@
-const { createLogger, format, transports } = require('winston');
+/* eslint-disable no-shadow */
+import { createLogger, format, transports } from 'winston';
 
-const { combine, timestamp, printf, errors } = format;
+const {
+    combine,
+    timestamp,
+    printf,
+    errors,
+} = format;
 
 const buildDevLogger = () => {
     const logFormat = printf(({
@@ -23,4 +29,4 @@ const buildDevLogger = () => {
     });
 };
 
-module.exports = buildDevLogger;
+export default buildDevLogger;

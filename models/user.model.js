@@ -1,6 +1,7 @@
-const bcrypt = require('bcryptjs');
+/* eslint-disable import/extensions */
+import bcrypt from 'bcryptjs';
 
-const db = require('../data/database');
+import db from '../data/database.js';
 
 class User {
     constructor(email, password, fullname, street, cap, city) {
@@ -44,4 +45,4 @@ class User {
     }
 }
 
-module.exports = User;
+export default User;

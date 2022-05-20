@@ -4,4 +4,4 @@ const addCsrfToken = (req, res, next) => {
     next();
 };
 
-module.exports = addCsrfToken;
+export default addCsrfToken;

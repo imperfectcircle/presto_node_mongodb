@@ -37,7 +37,7 @@ const passwordIsConfirmed = (
     confirmPassword,
 ) => password === confirmPassword;
 
-module.exports = {
+export {
     userDetailsAreValid,
     emailIsConfirmed,
     passwordIsConfirmed,

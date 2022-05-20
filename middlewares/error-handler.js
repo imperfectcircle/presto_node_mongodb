@@ -1,4 +1,5 @@
-const logger = require('../logger/logger');
+/* eslint-disable import/extensions */
+import logger from '../logger/logger.js';
 
 const errorHandler = (error, req, res, next) => {
     logger.error(error);
@@ -7,4 +8,4 @@ const errorHandler = (error, req, res, next) => {
     return next();
 };
 
-module.exports = errorHandler;
+export default errorHandler;

@@ -11,4 +11,4 @@ const checkAuthStatus = (req, res, next) => {
     return next();
 };
 
-module.exports = checkAuthStatus;
+export default checkAuthStatus;
