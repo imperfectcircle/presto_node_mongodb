@@ -1,6 +1,6 @@
-import express from 'express';
+import Router from 'express';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/products', (req, res) => {
     res.render('customer/products/all-products');
