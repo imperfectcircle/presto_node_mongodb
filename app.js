@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 
-// ! To use import add "type": "module" to package.json and use
-// ! "nodemon --experimental-modules --es-module-specifier-resolution=node app.js"
-// ! you need to add .js when iporting your own modules and change module.exports = to
-// ! export default 
+// ! To use import add "type": "module" to package.json
+// ! you need to add .js when importing your own modules and change "module.exports =" to
+// ! "export default the_name_of_the_feature" if you have a signle feature per module and "export { feature1, feature2 }" for more.
+// ! If you have more feature, you should import them w/ "import { feature1, feature2 } from 'path/to/module.js' "
 
 import dotenv from 'dotenv';
 
@@ -43,6 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 const sessionConfig = createSessionConfig();
 
 app.use(express.static('public'));
+app.use('/products/assets', express.static('product-data'))
 app.use(express.urlencoded({ extended: false }));
 app.use(expressSession(sessionConfig));
 app.use(csrf());

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 import { getDb } from '../data/database.js';
 import logger from '../logger/logger.js';
@@ -11,6 +12,15 @@ class Product {
         this.image = productData.image;
         this.imagePath = `product-data/images/${productData.image}`;
         this.imageUrl = `/products/assets/images/${productData.image}`;
+        if (productData._id) {
+            this.id = productData._id.toString();
+        }
+    }
+
+    static async findAll() {
+        const products = await getDb().collection('products').find().toArray();
+
+        return products.map((el) => new Product(el));
     }
 
     async save() {
@@ -24,7 +34,7 @@ class Product {
         try {
             await getDb()
                 .collection('products')
-                .insertOne({ productData });
+                .insertOne(productData);
         } catch (error) {
             logger.error(error);
         }

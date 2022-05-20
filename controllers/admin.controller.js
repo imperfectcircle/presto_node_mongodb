@@ -1,12 +1,19 @@
 /* eslint-disable import/extensions */
 import logger from '../logger/logger.js';
-import Product from '../models/poduct.model.js';
+import Product from '../models/product.model.js';
 
-const getProucts = (req, res) => {
-    res.render('admin/products/all-products');
+const getProducts = async (req, res, next) => {
+    try {
+        const products = await Product.findAll();
+        // console.log(products);
+        res.render('admin/products/all-products', { products });
+    } catch (error) {
+        logger.error(error);
+        next(error);
+    }
 };
 
-const getNewProuct = (req, res) => {
+const getNewProduct = (req, res) => {
     res.render('admin/products/new-product');
 };
 
@@ -20,7 +27,7 @@ const createNewProduct = async (req, res, next) => {
         await product.save();
     } catch (error) {
         logger.error(error);
-        next();
+        next(error);
         return;
     }
 
@@ -28,7 +35,7 @@ const createNewProduct = async (req, res, next) => {
 };
 
 export {
-    getProucts,
-    getNewProuct,
+    getProducts,
+    getNewProduct,
     createNewProduct,
 };
