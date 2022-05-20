@@ -43,6 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 const sessionConfig = createSessionConfig();
 
 app.use(express.static('public'));
+// * Filtra le req che iniziano con /products/assets indirizzandole a product-data
 app.use('/products/assets', express.static('product-data'))
 app.use(express.urlencoded({ extended: false }));
 app.use(expressSession(sessionConfig));
@@ -52,6 +53,7 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+// * Filtra le req che iniziano con /admin 
 app.use('/admin', adminRoutes);
 app.use(errorHandlerMiddleware);
 

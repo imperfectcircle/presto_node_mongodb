@@ -24,6 +24,7 @@
 
     --color-error-100: rgb(255, 192, 180);
     --color-error-500: rgb(199, 51, 15);
+    --color-error-700: rgb(148, 40, 13);
 
     --color-accent-100: rgb(221, 248, 255);
     --color-accent-500: rgb(33, 158, 188);
@@ -61,7 +62,7 @@ body {
 main {
     width: 90vw;
     margin: 0 auto;
-    
+    text-align: center;
 }
 
 a {
@@ -105,6 +106,17 @@ ol {
 .btn-outline:hover,
 .btn-outline:active {
     color: var(--color-white);
+}
+
+.btn-warning {
+    background-color: var(--color-error-500);
+    border-color: var(--color-error-500);
+}
+
+.btn-warning:hover,
+.btn-warning:active {
+    background-color: var(--color-error-700);
+    border-color: var(--color-error-700);
 }
 
 .alert {

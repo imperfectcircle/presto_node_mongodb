@@ -34,8 +34,40 @@ const createNewProduct = async (req, res, next) => {
     res.redirect('/admin/products');
 };
 
+const getUpdateProduct = async (req, res, next) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        res.render('admin/products/update-product', { product });
+    } catch (error) {
+        logger.error(error);
+        next(error);
+    }
+};
+
+const updateProduct = async (req, res, next) => {
+    const product = new Product({
+        ...req.body,
+        _id: req.params.id,
+    });
+
+    if (req.file) {
+        product.replaceImage(req.file.filename);
+    }
+
+    try {
+        await product.save();
+    } catch (error) {
+        logger.error(error);
+        next(error);
+        return;
+    }
+    res.redirect('/admin/products');
+};
+
 export {
     getProducts,
     getNewProduct,
     createNewProduct,
+    getUpdateProduct,
+    updateProduct,
 };
