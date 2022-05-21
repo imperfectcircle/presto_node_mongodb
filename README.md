@@ -18,13 +18,16 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 
 [![Contributors][contributors-shield]][contributors-url]
+
+
+
+[![MIT License][license-shield]][license-url]
+
+-->
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
--->
-
 
 <h3 align="center">Presto Shop</h3>
 
