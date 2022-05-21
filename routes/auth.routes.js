@@ -11,14 +11,14 @@ import {
 
 const router = Router();
 
-router.get('/signup', getSignup);
+router.get('/signup', getSignup); // * /admin/signup
 
-router.post('/signup', signup);
+router.post('/signup', signup); // * /admin/signup
 
-router.get('/login', getLogin);
+router.get('/login', getLogin); // * /admin/login
 
-router.post('/login', login);
+router.post('/login', login); // * /admin/login
 
-router.post('/logout', logout);
+router.post('/logout', logout); // * /admin/logout
 
 export default router;

@@ -18,6 +18,7 @@ import authRoutes from './routes/auth.routes.js';
 import baseRoutes from './routes/base.routes.js';
 import productsRoutes from './routes/products.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import cartRoutes from './routes/cart.routes.js';
 
 import createSessionConfig from './config/session.js';
 
@@ -29,6 +30,7 @@ import addCsrfTokenMiddleware from './middlewares/csrf.token.js';
 import errorHandlerMiddleware from './middlewares/error-handler.js';
 import checkAuthStatusMiddleware from './middlewares/check-auth.js';
 import protectRoutesMiddleware from './middlewares/protect-routes.js';
+import cartMiddleware from './middlewares/cart.js';
 
 const projectEnv = dotenv.config();
 dotenvExpand.expand(projectEnv);
@@ -46,17 +48,22 @@ app.use(express.static('public'));
 // * Filtra le req che iniziano con /products/assets indirizzandole a product-data
 app.use('/products/assets', express.static('product-data'))
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(expressSession(sessionConfig));
 app.use(csrf());
 app.use(addCsrfTokenMiddleware);
+app.use(cartMiddleware);
 app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
-app.use(protectRoutesMiddleware);
+// * Filtra le req che iniziano con /cart 
+app.use('/cart', cartRoutes);
 
+app.use(protectRoutesMiddleware);
 // * Filtra le req che iniziano con /admin 
 app.use('/admin', adminRoutes);
+
 app.use(errorHandlerMiddleware);
 app.use((req, res) => res.status(404).render('shared/404'))
 

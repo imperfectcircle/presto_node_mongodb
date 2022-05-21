@@ -70,6 +70,12 @@
     white-space: pre-wrap;
 }
 
+.cart-btn {
+    margin-top: var(--space-4);
+    font-size: 2rem;
+    color: var(--color-accent-700);
+}
+
 @media (min-width: 48rem) {
     #product-details {
         display: flex;
