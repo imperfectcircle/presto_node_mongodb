@@ -44,6 +44,11 @@ textarea {
     resize: none;
 }
 
+.form p {
+    font-size: 0.8rem;
+    margin-top: 0;
+}
+
 hr {
     color: var(--color-gray-700);
 }
@@ -51,6 +56,10 @@ hr {
 @media screen and (min-width: 48rem) {
     .form {
         max-width: 80%;
+    }
+
+    .form.auth-form {
+        max-width: 30rem;
     }
 }
 

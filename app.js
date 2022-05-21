@@ -6,7 +6,6 @@
 // ! If you have more feature, you should import them w/ "import { feature1, feature2 } from 'path/to/module.js' "
 
 import dotenv from 'dotenv';
-
 import dotenvExpand from 'dotenv-expand';
 
 import path from 'path';
@@ -26,9 +25,10 @@ import logger from './logger/logger.js';
 
 import { connectToDatabase } from './data/database.js';
 
-import addCsrfMiddlewareToken from './middlewares/csrf.token.js';
+import addCsrfTokenMiddleware from './middlewares/csrf.token.js';
 import errorHandlerMiddleware from './middlewares/error-handler.js';
 import checkAuthStatusMiddleware from './middlewares/check-auth.js';
+import protectRoutesMiddleware from './middlewares/protect-routes.js';
 
 const projectEnv = dotenv.config();
 dotenvExpand.expand(projectEnv);
@@ -48,14 +48,17 @@ app.use('/products/assets', express.static('product-data'))
 app.use(express.urlencoded({ extended: false }));
 app.use(expressSession(sessionConfig));
 app.use(csrf());
-app.use(addCsrfMiddlewareToken);
+app.use(addCsrfTokenMiddleware);
 app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+app.use(protectRoutesMiddleware);
+
 // * Filtra le req che iniziano con /admin 
 app.use('/admin', adminRoutes);
 app.use(errorHandlerMiddleware);
+app.use((req, res) => res.status(404).render('shared/404'))
 
 connectToDatabase()
     .then(() => {
