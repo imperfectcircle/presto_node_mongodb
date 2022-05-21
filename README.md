@@ -114,6 +114,11 @@ Per utilizzare il progetto è necessario aver installato sulla propria macchia N
    ```sh
    npm install
    ```
+5. Avvia l'applicazione
+   ```sh
+   npm start
+   ```
+6. L'applicazione gira sulla porta 3000 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
