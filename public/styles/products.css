@@ -35,3 +35,9 @@
     margin-top: var(--space-4);
     justify-content: center;
 }
+
+/* #product-description {
+    background-color: var(--color-primary-200);
+    padding: var(--space-8);
+    white-space: pre-wrap;
+} */
