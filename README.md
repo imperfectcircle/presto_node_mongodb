@@ -72,7 +72,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Questo progetto è un rifacimento di un portale di annunci realizzato con laravel e database SQL, che ho deciso a scopo di fare pratica di riprogettare da zero riscrivendo il codice lato server, questa volta con Node.js ed il framework Express e un database NoSQL.
+Questo progetto è un rifacimento di un portale di annunci realizzato con laravel e database SQL, che a scopo di pratica ho deciso di riprogettare da zero, riscrivendo il codice lato server utilizzando questa volta Node.js con il framework Express e un database NoSQL.
 
 Il progetto è ancora in fase di realizzazione.
 
