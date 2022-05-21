@@ -108,7 +108,7 @@ Per utilizzare il progetto è necessario aver installato sulla propria macchia N
    ```sh
    cp .env.example .env
    ```
-3. Modifica le variabili d'ambiente nel file .env 
+3. Imposta le variabili d'ambiente nel file .env 
 
 4. Installa i pacchetti necessari
    ```sh
