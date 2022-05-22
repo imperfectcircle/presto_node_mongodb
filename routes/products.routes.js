@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import Router from 'express';
 
-import { getAllProducts, getProductDetails} from '../controllers/products.controller.js';
+import { getAllProducts, getProductDetails } from '../controllers/products.controller.js';
 
 const router = Router();
 

@@ -5,7 +5,7 @@ const cartBadgeElement = document.querySelector('.nav-items .badge');
 addToCartButtonElement.addEventListener('click', async () => {
     const productId = addToCartButtonElement.dataset.productid;
     const csrfToken = addToCartButtonElement.dataset.csrf;
-    console.log(addToCartButtonElement.dataset.productId);
+
     let response;
     try {
         response = await fetch('/cart/items', {

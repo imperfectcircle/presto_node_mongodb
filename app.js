@@ -27,7 +27,7 @@ import logger from './logger/logger.js';
 import { connectToDatabase } from './data/database.js';
 
 import addCsrfTokenMiddleware from './middlewares/csrf.token.js';
-import errorHandlerMiddleware from './middlewares/error-handler.js';
+import { errorPageNotFound, errorHandler } from './middlewares/error-handler.js';
 import checkAuthStatusMiddleware from './middlewares/check-auth.js';
 import protectRoutesMiddleware from './middlewares/protect-routes.js';
 import cartMiddleware from './middlewares/cart.js';
@@ -64,8 +64,8 @@ app.use(protectRoutesMiddleware);
 // * Filtra le req che iniziano con /admin 
 app.use('/admin', adminRoutes);
 
-app.use(errorHandlerMiddleware);
-app.use((req, res) => res.status(404).render('shared/404'))
+app.use(errorHandler);
+app.use(errorPageNotFound)
 
 connectToDatabase()
     .then(() => {

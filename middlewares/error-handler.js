@@ -1,6 +1,12 @@
 /* eslint-disable import/extensions */
 import logger from '../logger/logger.js';
 
+const errorPageNotFound = (req, res, next) => {
+    res.status(404)
+        .render('shared/404');
+    return next();
+};
+
 const errorHandler = (error, req, res, next) => {
     logger.error(error);
 
@@ -14,4 +20,7 @@ const errorHandler = (error, req, res, next) => {
     return next();
 };
 
-export default errorHandler;
+export {
+    errorPageNotFound,
+    errorHandler,
+};

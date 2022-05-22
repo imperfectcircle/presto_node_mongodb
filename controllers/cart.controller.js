@@ -2,6 +2,10 @@
 import logger from '../logger/logger.js';
 import Product from '../models/product.model.js';
 
+const getCart = (req, res) => {
+    res.render('customer/cart/cart');
+};
+
 const addCartItem = async (req, res, next) => {
     let product;
 
@@ -24,5 +28,6 @@ const addCartItem = async (req, res, next) => {
 };
 
 export {
+    getCart,
     addCartItem,
 };
