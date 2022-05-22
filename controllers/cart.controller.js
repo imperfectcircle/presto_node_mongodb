@@ -27,7 +27,27 @@ const addCartItem = async (req, res, next) => {
     });
 };
 
+const updateCartItem = (req, res) => {
+    const { cart } = res.locals;
+    const updatedItemData = cart.updateItem(
+        req.body.productId,
+        req.body.quantity,
+    );
+
+    req.session.cart = cart;
+
+    res.json({
+        message: 'Aggiornato',
+        updatedCartData: {
+            newTotalQuantity: cart.totalQuantity,
+            newTotalPrice: cart.newTotalPrice,
+            updatedItemPrice: updatedItemData.updatedItemPrice,
+        },
+    });
+};
+
 export {
     getCart,
     addCartItem,
+    updateCartItem,
 };

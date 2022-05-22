@@ -32,4 +32,30 @@ export default class Cart {
         this.totalQuantity += 1;
         this.totalPrice += product.price;
     }
+
+    updateItem(productId, newQuantity) {
+        for (let i = 0; i < this.items.length; i += 1) {
+            const item = this.items[i];
+            if (item.product.id === productId && newQuantity > 0) {
+                const cartItem = { ...item };
+                const quantityChange = newQuantity - item.quantity;
+                cartItem.quantity = newQuantity;
+                cartItem.totalPrice = newQuantity * product.price;
+                this.items[i] = cartItem;
+
+                this.totalQuantity += quantityChange;
+                this.totalPrice += quantityChange * product.price;
+                return {
+                    updatedItemPrice: cartItem.totalPrice,
+                };
+            } // else if (item.product.id === productId && newQuantity <= 0) {
+            this.items.splice(i, 1);
+            this.totalQuantity -= item.quantity;
+            this.totalPrice -= item.totalPrice;
+            return {
+                updatedItemPrice: 0,
+                // };
+            };
+        }
+    }
 }
