@@ -1,6 +1,7 @@
+/* eslint-disable no-else-return */
 /* eslint-disable max-len */
 export default class Cart {
-// * Imposto il valore di default in modo che se il carrello è creato senza che vengano passati valori nel costruttore utilizzo automaticamente un array vuoto
+    // * Imposto il valore di default in modo che se il carrello è creato senza che vengano passati valori nel costruttore utilizzo automaticamente un array vuoto
     constructor(items = [], totalQuantity = 0, totalPrice = 0) {
         this.items = items;
         this.totalQuantity = totalQuantity;
@@ -9,7 +10,7 @@ export default class Cart {
 
     //* aggiungo oggetti al carrello
     addItem(product) {
-    // * Non salvo in una collezione nel database ma nella session dell'utente in modo che anche gli utenti non loggati possano aggiungere prodotti al carrello
+        // * Non salvo in una collezione nel database ma nella session dell'utente in modo che anche gli utenti non loggati possano aggiungere prodotti al carrello
         const cartItem = {
             product,
             quantity: 1,
@@ -34,28 +35,24 @@ export default class Cart {
     }
 
     updateItem(productId, newQuantity) {
-        for (let i = 0; i < this.items.length; i += 1) {
+        for (let i = 0; i < this.items.length; i++) {
             const item = this.items[i];
             if (item.product.id === productId && newQuantity > 0) {
                 const cartItem = { ...item };
                 const quantityChange = newQuantity - item.quantity;
                 cartItem.quantity = newQuantity;
-                cartItem.totalPrice = newQuantity * product.price;
+                cartItem.totalPrice = newQuantity * item.product.price;
                 this.items[i] = cartItem;
 
-                this.totalQuantity += quantityChange;
-                this.totalPrice += quantityChange * product.price;
-                return {
-                    updatedItemPrice: cartItem.totalPrice,
-                };
-            } // else if (item.product.id === productId && newQuantity <= 0) {
-            this.items.splice(i, 1);
-            this.totalQuantity -= item.quantity;
-            this.totalPrice -= item.totalPrice;
-            return {
-                updatedItemPrice: 0,
-                // };
-            };
+                this.totalQuantity = this.totalQuantity + quantityChange;
+                this.totalPrice += quantityChange * item.product.price;
+                return { updatedItemPrice: cartItem.totalPrice };
+            } else if (item.product.id === productId && newQuantity <= 0) {
+                this.items.splice(i, 1);
+                this.totalQuantity = this.totalQuantity - item.quantity;
+                this.totalPrice -= item.totalPrice;
+                return { updatedItemPrice: 0 };
+            }
         }
     }
 }
