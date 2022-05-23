@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import logger from '../logger/logger.js';
 import Product from '../models/product.model.js';
+import Order from '../models/order.model.js';
 
 const getProducts = async (req, res, next) => {
     try {
@@ -79,6 +80,34 @@ const deleteProduct = async (req, res, next) => {
     res.json({ message: 'Deleted product' });
 };
 
+const getOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.findAll();
+        res.render('admin/orders/admin-orders', {
+            orders,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+const updateOrder = async (req, res, next) => {
+    const orderId = req.params.id;
+    const { newStatus } = req.body;
+
+    try {
+        const order = await Order.findById(orderId);
+
+        order.status = newStatus;
+
+        await order.save();
+
+        res.json({ message: 'Order updated', newStatus });
+    } catch (error) {
+        next(error);
+    }
+};
+
 export {
     getProducts,
     getNewProduct,
@@ -86,4 +115,6 @@ export {
     getUpdateProduct,
     updateProduct,
     deleteProduct,
+    getOrders,
+    updateOrder,
 };

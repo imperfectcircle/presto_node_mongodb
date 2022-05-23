@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const addToCartButtonElement = document.querySelector('.cart-btn');
-const cartBadgeElement = document.querySelector('.nav-items .badge');
+const cartBadgeElements = document.querySelectorAll('.nav-items .badge');
 
 addToCartButtonElement.addEventListener('click', async () => {
     const productId = addToCartButtonElement.dataset.productid;
@@ -30,5 +30,8 @@ addToCartButtonElement.addEventListener('click', async () => {
 
     const resposneData = await response.json();
     const newTotalQuantity = resposneData.newTotalItems;
-    cartBadgeElement.textContent = newTotalQuantity;
+    cartBadgeElements.forEach((el) => {
+        const element = el;
+        element.textContent = newTotalQuantity;
+    });
 });

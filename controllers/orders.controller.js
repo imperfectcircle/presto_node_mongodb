@@ -3,8 +3,15 @@ import logger from '../logger/logger.js';
 import Order from '../models/order.model.js';
 import User from '../models/user.model.js';
 
-const getOrders = (req, res) => {
-    res.render('customer/orders/all-orders');
+const getOrders = async (req, res, next) => {
+    try {
+        const orders = await Order.findAllForUser(res.locals.uid);
+        res.render('customer/orders/all-orders', {
+            orders,
+        });
+    } catch (error) {
+        next(error);
+    }
 };
 
 const addOrder = async (req, res, next) => {
@@ -29,7 +36,7 @@ const addOrder = async (req, res, next) => {
 
     req.session.cart = null;
 
-    res.redirect('/orders');
+    return res.redirect('/orders');
 };
 
 export {

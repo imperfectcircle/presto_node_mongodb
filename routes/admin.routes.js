@@ -8,6 +8,8 @@ import {
     getUpdateProduct,
     updateProduct,
     deleteProduct,
+    getOrders,
+    updateOrder,
 } from '../controllers/admin.controller.js';
 
 import imageUploadMiddleware from '../middlewares/image-upload.js';
@@ -25,5 +27,9 @@ router.get('/products/:id', getUpdateProduct);
 router.post('/products/:id', imageUploadMiddleware, updateProduct);
 
 router.delete('/products/:id', deleteProduct);
+
+router.get('/orders', getOrders);
+
+router.patch('/orders/:id', updateOrder);
 
 export default router;

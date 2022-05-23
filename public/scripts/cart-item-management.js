@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 const cartItemUpdateFormElements = document.querySelectorAll('.cart-item-management');
 const cartTotalPriceElement = document.getElementById('cart-total-price');
-const cartBadge = document.querySelector('.nav-items .badge');
+const cartBadgeElements = document.querySelectorAll('.nav-items .badge');
 
 cartItemUpdateFormElements.forEach((el) => {
     el.addEventListener('submit', async (event) => {
@@ -49,6 +49,9 @@ cartItemUpdateFormElements.forEach((el) => {
 
         cartTotalPriceElement.textContent = responseData.updatedCartData.newTotalPrice.toFixed(2);
 
-        cartBadge.textContent = responseData.updatedCartData.newTotalQuantity;
+        cartBadgeElements.forEach((el)=> {
+            const element = el;
+            element.textContent = responseData.updatedCartData.newTotalQuantity;
+        });
     });
 });

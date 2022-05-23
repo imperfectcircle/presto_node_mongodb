@@ -1,11 +1,56 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-else-return */
 /* eslint-disable max-len */
+import Product from './product.model.js';
+
 export default class Cart {
     // * Imposto il valore di default in modo che se il carrello è creato senza che vengano passati valori nel costruttore utilizzo automaticamente un array vuoto
     constructor(items = [], totalQuantity = 0, totalPrice = 0) {
         this.items = items;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+    }
+
+    async updatePrices() {
+        const productIds = this.items.map((item) => item.product.id);
+
+        const products = await Product.findMultiple(productIds);
+
+        const deletableCartItemProductIds = [];
+
+        this.items.forEach((el) => {
+            const product = products.find((prod) => prod.id === el.product.id);
+
+            if (!product) {
+                // product was deleted!
+                // "schedule" for removal from cart
+                deletableCartItemProductIds.push(el.product.id);
+                return;
+            }
+
+            // product was not deleted
+            // set product data and total price to latest price from database
+            const element = el;
+            element.product = product;
+            element.totalPrice = el.quantity * el.product.price;
+        });
+
+        if (deletableCartItemProductIds.length > 0) {
+            this.items = this.items.filter((item) => deletableCartItemProductIds.indexOf(item.product.id) < 0);
+        }
+
+        // re-calculate cart totals
+        this.totalQuantity = 0;
+        this.totalPrice = 0;
+
+        this.items.forEach((el) => {
+            this.totalQuantity += el.quantity;
+            this.totalPrice += el.totalPrice;
+        });
+        // for (const item of this.items) {
+        //     this.totalQuantity = this.totalQuantity + item.quantity;
+        //     this.totalPrice = this.totalPrice + item.totalPrice;
+        // }
     }
 
     //* aggiungo oggetti al carrello
@@ -54,5 +99,6 @@ export default class Cart {
                 return { updatedItemPrice: 0 };
             }
         }
+        return null;
     }
 }

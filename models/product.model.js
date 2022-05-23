@@ -47,6 +47,17 @@ export default class Product {
         return products.map((el) => new Product(el));
     }
 
+    static async findMultiple(ids) {
+        const productIds = ids.map((id) => new mongodb.ObjectId(id));
+
+        const products = await getDb()
+            .collection('products')
+            .find({ _id: { $in: productIds } })
+            .toArray();
+
+        return products.map((productDocument) => new Product(productDocument));
+    }
+
     updateImageData() {
         this.imagePath = `product-data/images/${this.image}`;
         // * /products/assets/images/ vedere middleware per le pagine statiche in app.js
@@ -67,13 +78,14 @@ export default class Product {
             if (!this.image) {
                 delete productData.image;
             }
-            await getDb().collection('products').updateOne({ _id: productId }, {
-                $set: productData,
-            });
+            await getDb().collection('products').updateOne(
+                { _id: productId },
+                {
+                    $set: productData,
+                },
+            );
         } else {
-            await getDb()
-                .collection('products')
-                .insertOne(productData);
+            await getDb().collection('products').insertOne(productData);
         }
     }
 

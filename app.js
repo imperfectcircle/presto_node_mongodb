@@ -32,6 +32,7 @@ import { errorPageNotFound, errorHandler } from './middlewares/error-handler.js'
 import checkAuthStatusMiddleware from './middlewares/check-auth.js';
 import protectRoutesMiddleware from './middlewares/protect-routes.js';
 import cartMiddleware from './middlewares/cart.js';
+import updateCartPricesMiddleware from './middlewares/update-cart-prices.js'
 
 const projectEnv = dotenv.config();
 dotenvExpand.expand(projectEnv);
@@ -54,6 +55,7 @@ app.use(expressSession(sessionConfig));
 app.use(csrf());
 app.use(addCsrfTokenMiddleware);
 app.use(cartMiddleware);
+app.use(updateCartPricesMiddleware);
 app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
@@ -63,12 +65,12 @@ app.use('/cart', cartRoutes);
 
 app.use(protectRoutesMiddleware);
 // * Filtra le req che iniziano con /orders 
-app.use('/orders', OrdersRoutes)
+app.use('/orders', protectRoutesMiddleware, OrdersRoutes)
 // * Filtra le req che iniziano con /admin 
-app.use('/admin', adminRoutes);
+app.use('/admin', protectRoutesMiddleware, adminRoutes);
 
-app.use(errorHandler);
 app.use(errorPageNotFound)
+app.use(errorHandler);
 
 connectToDatabase()
     .then(() => {
