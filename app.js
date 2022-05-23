@@ -19,6 +19,7 @@ import baseRoutes from './routes/base.routes.js';
 import productsRoutes from './routes/products.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 import cartRoutes from './routes/cart.routes.js';
+import OrdersRoutes from './routes/orders.routes.js';
 
 import createSessionConfig from './config/session.js';
 
@@ -61,6 +62,8 @@ app.use(productsRoutes);
 app.use('/cart', cartRoutes);
 
 app.use(protectRoutesMiddleware);
+// * Filtra le req che iniziano con /orders 
+app.use('/orders', OrdersRoutes)
 // * Filtra le req che iniziano con /admin 
 app.use('/admin', adminRoutes);
 

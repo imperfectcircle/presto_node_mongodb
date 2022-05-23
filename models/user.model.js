@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import bcrypt from 'bcryptjs';
+import mongodb from 'mongodb';
 
 import { getDb } from '../data/database.js';
 
@@ -13,6 +14,18 @@ class User {
             cap,
             city,
         };
+    }
+
+    static findById(userId) {
+        const uid = new mongodb.ObjectId(userId);
+
+        return getDb()
+            .collection('users')
+            .findOne({ _id: uid }, {
+                projection: {
+                    password: 0,
+                },
+            });
     }
 
     getUserWithSameEmail() {

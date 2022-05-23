@@ -20,7 +20,7 @@ export default class Cart {
         for (let i = 0; i < this.items.length; i += 1) {
             const item = this.items[i];
             if (item.product.id === product.id) {
-                cartItem.quantity = item.quantity + 1;
+                cartItem.quantity = +item.quantity + 1;
                 cartItem.totalPrice = item.totalPrice + product.price;
                 this.items[i] = cartItem;
 
@@ -35,7 +35,7 @@ export default class Cart {
     }
 
     updateItem(productId, newQuantity) {
-        for (let i = 0; i < this.items.length; i++) {
+        for (let i = 0; i < this.items.length; i += 1) {
             const item = this.items[i];
             if (item.product.id === productId && newQuantity > 0) {
                 const cartItem = { ...item };
@@ -44,12 +44,12 @@ export default class Cart {
                 cartItem.totalPrice = newQuantity * item.product.price;
                 this.items[i] = cartItem;
 
-                this.totalQuantity = this.totalQuantity + quantityChange;
+                this.totalQuantity += quantityChange;
                 this.totalPrice += quantityChange * item.product.price;
                 return { updatedItemPrice: cartItem.totalPrice };
             } else if (item.product.id === productId && newQuantity <= 0) {
                 this.items.splice(i, 1);
-                this.totalQuantity = this.totalQuantity - item.quantity;
+                this.totalQuantity -= item.quantity;
                 this.totalPrice -= item.totalPrice;
                 return { updatedItemPrice: 0 };
             }
