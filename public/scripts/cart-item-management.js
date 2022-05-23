@@ -49,7 +49,8 @@ cartItemUpdateFormElements.forEach((el) => {
 
         cartTotalPriceElement.textContent = responseData.updatedCartData.newTotalPrice.toFixed(2);
 
-        cartBadgeElements.forEach((el)=> {
+        // eslint-disable-next-line no-shadow
+        cartBadgeElements.forEach((el) => {
             const element = el;
             element.textContent = responseData.updatedCartData.newTotalQuantity;
         });
